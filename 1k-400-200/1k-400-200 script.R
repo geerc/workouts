@@ -56,3 +56,13 @@ names(all_workouts)[names(all_workouts) == "Time.y"] <- "October 20 2017"
 
 # Makes new data table, optimized for plotting
 all_workouts_plot <- all_workouts %>% gather(`October 19 2016`, `October 20 2017`, key = "Date", value = "Time") %>% arrange(Split)
+
+# Puts split number 10 at bottom after number 9
+all_workouts_plot <- all_workouts_plot[c(1,2,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,3,4),]
+
+# Reindex rows again
+rownames(all_workouts_plot) <- 1:nrow(all_workouts_plot)
+
+# Plot the data
+ggplot(data = all_workouts_plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
+  geom_path()
