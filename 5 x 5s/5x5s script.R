@@ -4,7 +4,8 @@ library(dplyr)
 
 # Load data sets
 Oct.4.2016 <- read.csv("~/Running Data/5 x 5s/Oct 4 2016.csv") # Alden Computers
-Oct.4.2016 <- read.table(file.choose(), header = TRUE, sep = ",") # My labtop
+
+Oct.4.2016 <- read.csv("~/Github/workouts/5 x 5s/Oct 4 2016.csv") # My labtop
 
 # Delete rest splits and remove unnecessary columns
 Oct.4.2016 <- Oct.4.2016[-c(2, 4, 6, 8, 10, 11), ] %>% select(Split, Distance)

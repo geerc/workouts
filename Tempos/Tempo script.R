@@ -3,11 +3,17 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-Aug.25.2017 <- read.csv("~/Github/workouts/Tempos/Aug 25 2017.csv")
+Aug.25.2017 <- read.csv("~/Running Data/Tempos/Aug 25 2017.csv") # Alden Computers
+Oct.17.2017 <- read.csv("~/Running Data/Tempos/Oct.17.2017.csv")
+Sep.14.2017 <- read.csv("~/Running Data/Tempos/Sep 14 2017.csv")
+Oct.18.2016 <- read.csv("~/Running Data/Tempos/Oct 17 2016.csv")
+Sep.15.2016 <- read.csv("~/Running Data/Tempos/Sep 15 2016.csv")
+
+Aug.25.2017 <- read.csv("~/Github/workouts/Tempos/Aug 25 2017.csv") # My Laptop
 Oct.17.2017 <- read.csv("~/Github/workouts/Tempos/Oct 17 2017.csv")
-Sep.14.2017 <- read.csv("~/Github/workouts/Tempos/Sept 14 2017.csv")
+Sep.14.2017 <- read.csv("~/Github/workouts/Tempos/Sep 14 2017.csv")
 Oct.18.2016 <- read.csv("~/Github/workouts/Tempos/Oct 18 2016.csv")
-Sep.15.2016 <- read.csv("~/Github/workouts/Tempos/Sept 15 2016.csv")
+Sep.15.2016 <- read.csv("~/Github/workouts/Tempos/Sep 15 2016.csv")
 
 # Delete rest splits and remove unnecessary columns
 Aug.25.2017 <- Aug.25.2017[-c(1, 2, 7, 8, 9, 10, 11), ] %>% select(Split, Avg.Pace)

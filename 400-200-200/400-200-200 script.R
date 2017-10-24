@@ -4,7 +4,8 @@ library(dplyr)
 
 # Import data sets for workouts
 Oct.27.2016 <- read.csv("~/Running Data/400-200-200/Oct 27 2016.csv") # Alden Computers
-Oct.27.2016 <- read.table(file.choose(), header = TRUE, sep = ",") # My desktop
+
+Oct.27.2016 <- read.csv("~/Running Data/400-200-200/Oct 27 2016.csv") # My Laptop
 
 
 # Copy Time data to Moving.Time, so we can delete rest splits
