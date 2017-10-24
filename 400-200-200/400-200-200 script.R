@@ -7,7 +7,6 @@ Oct.27.2016 <- read.csv("~/Running Data/400-200-200/Oct 27 2016.csv") # Alden Co
 
 Oct.27.2016 <- read.csv("~/Running Data/400-200-200/Oct 27 2016.csv") # My Laptop
 
-
 # Copy Time data to Moving.Time, so we can delete rest splits
 Oct.27.2016 <- mutate(Oct.27.2016, Moving.Time = Time)
 
@@ -37,6 +36,5 @@ all_workouts = full_join(Oct.27.2016, , header = TRUE, sep = ",")
 names(all_workouts)[names(all_400_200_200) == "Time.x"] <- "Oct.27.2016"
 
 # Plot data
-ggplot(data = all_workouts, mapping = aes(x = Split, y = Time, group = Date, Color = Date)) + 
+ggplot(data = all_workouts, mapping = aes(x = Split, y = Time, group = Date, Color = Date)) +
   geom_path()
-
