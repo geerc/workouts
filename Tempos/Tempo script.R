@@ -58,15 +58,24 @@ rownames(Oct.18.2016) <- 1:nrow(Oct.18.2016)
 rownames(Sep.14.2017) <- 1:nrow(Sep.14.2017)
 rownames(Sep.15.2016) <- 1:nrow(Sep.15.2016)
 
-# Join data sets together
-Aug_25_Oct_17 <- full_join(Aug.25.2017, Oct.17.2017, by = "Split")
-Oct_18_Sep_14 <- full_join(Oct.18.2016, Sep.14.2017, by = "Split")
-most_workouts <- full_join(Aug_25_Oct_17, Oct_18_Sep_14, by = "Split")
-all_workouts   <- full_join(most_workouts, Sep.15.2016, by = "Split")
+# Join data sets together, remove unecessary ones after
+first.join <- full_join(Aug.25.2017, Oct.17.2017, by = "Split")
+second.join <- full_join(Oct.18.2016, Sep.14.2017, by = "Split")
+first.second.join <- full_join(first.join, second.join, by = "Split")
+all.workouts   <- full_join(first.second.join, Sep.15.2016, by = "Split")
+rm(first.join, second.join, first.second.join)
 
 # Rename columns to the date of the workout
-names(all_workouts)[names(all_workouts) == "Avg.Pace.x.x"] <- "Aug 25 2017"
-names(all_workouts)[names(all_workouts) == "Avg.Pace.y.x"] <- "Oct 17 2017"
-names(all_workouts)[names(all_workouts) == "Avg.Pace.x.y"] <- "Oct 18 2016"
-names(all_workouts)[names(all_workouts) == "Avg.Pace.y.y"] <- "Sep 14 2017"
-names(all_workouts)[names(all_workouts) == "Avg.Pace"] <- "Sep 15 2016"
+names(all.workouts)[names(all.workouts) == "Avg.Pace.x.x"] <- "Aug 25 2017"
+names(all.workouts)[names(all.workouts) == "Avg.Pace.y.x"] <- "Oct 17 2017"
+names(all.workouts)[names(all.workouts) == "Avg.Pace.x.y"] <- "Oct 18 2016"
+names(all.workouts)[names(all.workouts) == "Avg.Pace.y.y"] <- "Sep 14 2017"
+names(all.workouts)[names(all.workouts) == "Avg.Pace"] <- "Sep 15 2016"
+
+# Create new table optimized for plotting
+all.workouts.plot <- all.workouts %>% gather(`Aug 25 2017`, `Oct 17 2017`, `Oct 18 2016`, `Sep 14 2017`, `Sep 15 2016`, key = "Date", value = "Time") %>% arrange(Split)
+
+
+# Plot the workouts
+ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) + 
+  geom_path()
