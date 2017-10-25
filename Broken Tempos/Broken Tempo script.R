@@ -26,4 +26,13 @@ Sep.5.2017[12,1] <- 12
 # Reindex the rows to correct numbering
 rownames(Sep.5.2017) <- 1:nrow(Sep.5.2017)
 
-# 
+# Join all workouts together
+# all.workouts <- full.join(Sep.5.2017, , by = "Split")
+
+# New table for plotting
+# all.workouts.plot <- Sep.5.2017 %>% gather(`Sep 5 2017`, key = "Date", value = "Time") %>% arrange(Split)
+
+# Plot it
+ggplot(data = Sep.5.2017, mapping = aes(x = Split, y = Avg.Pace)) + 
+  geom_point()
+
