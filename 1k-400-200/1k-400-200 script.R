@@ -3,52 +3,52 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-oct_19_2017 <- read.csv("~/Running Data/1k-400-200/oct_19_2017.csv")
-oct_20_2016 <- read.csv("~/Running Data/1k-400-200/oct_20_2016.csv")
+oct.19.2017 <- read.csv("~/GitHub/workouts/1k-400-200/oct_19_2017.csv")
+oct.20.2016 <- read.csv("~/GitHub/workouts/1k-400-200/oct_20_2016.csv")
 
 # Copy Time data to Moving.Time, so we can delete rest splits
-oct_19_2017 <- mutate(oct_19_2017, Moving.Time = Time)
-oct_20_2016 <- mutate(oct_20_2016, Moving.Time = Time)
+oct.19.2017 <- mutate(oct.19.2017, Moving.Time = Time)
+oct.20.2016 <- mutate(oct.20.2016, Moving.Time = Time)
 
 # Delete rest splits and remove unnecessary columns
-oct_19_2017 <- oct_19_2017[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22), ] %>% select(Split, Moving.Time)
-oct_20_2016 <- oct_20_2016[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20), ] %>% select(Split, Moving.Time)
+oct.19.2017 <- oct.19.2017[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22), ] %>% select(Split, Moving.Time)
+oct.20.2016 <- oct.20.2016[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20), ] %>% select(Split, Moving.Time)
 
 # Rename Moving.Time to Time
-names(oct_19_2017)[names(oct_19_2017) == "Moving.Time"] <- "Time"
-names(oct_20_2016)[names(oct_20_2016) == "Moving.Time"] <- "Time"
+names(oct.19.2017)[names(oct.19.2017) == "Moving.Time"] <- "Time"
+names(oct.20.2016)[names(oct.20.2016) == "Moving.Time"] <- "Time"
 
 # Insert blank row for extra 200 during oct 19 workout
 split <- data.frame(Split = "4", Time = NA)
-oct_20_2016 <- rbind(oct_20_2016[1:3, ], split, oct_20_2016[-(1:3), ])
+oct.20.2016 <- rbind(oct.20.2016[1:3, ], split, oct.20.2016[-(1:3), ])
 
 #Renaming splits so as not go by 2s
-oct_19_2017[2, 1] <- 2
-oct_19_2017[3, 1] <- 3
-oct_19_2017[4, 1] <- 4
-oct_19_2017[5, 1] <- 5
-oct_19_2017[6, 1] <- 6
-oct_19_2017[7, 1] <- 7
-oct_19_2017[8, 1] <- 8
-oct_19_2017[9, 1] <- 9
-oct_19_2017[10,1] <- 10
+oct.19.2017[2, 1] <- 2
+oct.19.2017[3, 1] <- 3
+oct.19.2017[4, 1] <- 4
+oct.19.2017[5, 1] <- 5
+oct.19.2017[6, 1] <- 6
+oct.19.2017[7, 1] <- 7
+oct.19.2017[8, 1] <- 8
+oct.19.2017[9, 1] <- 9
+oct.19.2017[10,1] <- 10
 
-oct_20_2016[2, 1] <- 2
-oct_20_2016[3, 1] <- 3
-oct_20_2016[4, 1] <- 4
-oct_20_2016[5, 1] <- 5
-oct_20_2016[6, 1] <- 6
-oct_20_2016[7, 1] <- 7
-oct_20_2016[8, 1] <- 8
-oct_20_2016[9, 1] <- 9
-oct_20_2016[10,1] <- 10
+oct.20.2016[2, 1] <- 2
+oct.20.2016[3, 1] <- 3
+oct.20.2016[4, 1] <- 4
+oct.20.2016[5, 1] <- 5
+oct.20.2016[6, 1] <- 6
+oct.20.2016[7, 1] <- 7
+oct.20.2016[8, 1] <- 8
+oct.20.2016[9, 1] <- 9
+oct.20.2016[10,1] <- 10
 
 # Reindex the rows to correct numbering
-rownames(oct_19_2017) <- 1:nrow(oct_19_2017)
-rownames(oct_20_2016) <- 1:nrow(oct_20_2016)
+rownames(oct.19.2017) <- 1:nrow(oct.19.2017)
+rownames(oct.20.2016) <- 1:nrow(oct.20.2016)
 
 # Join data sets together
-all_workouts <- full_join(oct_20_2016, oct_19_2017, by = "Split")
+all.workouts <- full.join(oct.20.2016, oct.19.2017, by = "Split")
 
 # Rename the headers of each workout to the year from Time.x and Time.y
 names(all_workouts)[names(all_workouts) == "Time.x"] <- "October 19 2016"
