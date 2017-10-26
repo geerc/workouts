@@ -63,5 +63,5 @@ names(all.workouts)[names(all.workouts) == "Time"] <- "Oct 25 2016"
 all.workouts.plot <- all.workouts %>% gather(`Oct 25 2016`, `Aug 11 2017`, `Aug 29 2017`, key = "Date", value = "Time") %>% arrange(Split)
 
 #Plot it
-ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = date)) + 
+ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) + 
   geom_path()
