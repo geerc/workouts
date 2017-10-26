@@ -9,7 +9,7 @@ nov.1.2016 <- read.csv("~/GitHub/workouts/200-400-600 ladder/Nov 1 2016.csv")
 nov.1.2016 <- mutate(nov.1.2016, Moving.Time = Time)
 
 # Delete rest splits and remove unnecessary columns
-nov.1.2016 <- nov.1.2016[-c(2, 4, 6, 8, 10, 12, 14, 16, 18 , 20, 21)] %>% select(Split, Moving.Time)
+nov.1.2016 <- nov.1.2016[-c(2, 4, 6, 8, 10, 12, 14, 16, 18 , 20, 21), ] %>% select(Split, Moving.Time)
 
 # Rename Moving.Time to Time
 names(nov.1.2016)[names(nov.1.2016) == "Moving.Time"] <- "Time"
@@ -23,6 +23,7 @@ nov.1.2016[6, 1] <- 6
 nov.1.2016[7, 1] <- 7
 nov.1.2016[8, 1] <- 8
 nov.1.2016[9, 1] <- 9
+nov.1.2016[10,1] <- 10
 
 # Reindex rows to correct numbering
 rownames(nov.1.2016) <- 1:nrow(nov.1.2016)
