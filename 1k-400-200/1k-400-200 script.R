@@ -48,7 +48,7 @@ rownames(oct.19.2017) <- 1:nrow(oct.19.2017)
 rownames(oct.20.2016) <- 1:nrow(oct.20.2016)
 
 # Join data sets together
-all.workouts <- full.join(oct.20.2016, oct.19.2017, by = "Split")
+all.workouts <- full_join(oct.20.2016, oct.19.2017, by = "Split")
 
 # Rename the headers of each workout to the year from Time.x and Time.y
 names(all.workouts)[names(all.workouts) == "Time.x"] <- "October 19 2016"
@@ -63,6 +63,9 @@ all.workouts.plot <- all.workouts.plot[c(1,2,5,6,7,8,9,10,11,12,13,14,15,16,17,1
 # Reindex rows again
 rownames(all.workouts.plot) <- 1:nrow(all.workouts.plot)
 
+# Set Split column to double
+all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+
 # Plot the data
 ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
-  geom.path()
+  geom_path()
