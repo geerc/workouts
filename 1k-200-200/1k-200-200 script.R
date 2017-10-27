@@ -13,8 +13,8 @@ sep.12.2017 <- mutate(sep.12.2017, Moving.Time = Time)
 sep.13.2016 <- mutate(sep.13.2016, Moving.Time = Time)
 
 # Delete rest splits and remove unnecessary columns
-aug.30.2016 <- aug.30.2016[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 2, 28, 30, 31), ] %>% select(Split, Moving.Time)
-sep.12.2017 <- sep.12.2017[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 2, 28, 30, 31), ] %>% select(Split, Moving.Time)
+aug.30.2016 <- aug.30.2016[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 31), ] %>% select(Split, Moving.Time)
+sep.12.2017 <- sep.12.2017[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 31), ] %>% select(Split, Moving.Time)
 sep.13.2016 <- sep.13.2016[-c(1, 2, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 40), ] %>% select(Split, Moving.Time)
 
 # Rename Moving.Time to Time
@@ -73,3 +73,15 @@ sep.13.2016[15, 1] <- 15
 sep.13.2016[16, 1] <- 16
 sep.13.2016[17, 1] <- 17
 sep.13.2016[18, 1] <- 18
+
+# Reindex rows to correct numbering
+rownames(aug.30.2016) <- 1:nrow(aug.30.2016)
+rownames(sep.12.2017) <- 1:nrow(sep.12.2017)
+rownames(sep.13.2016) <- 1:nrow(sep.13.2016)
+
+# Join data sets together
+first.join <- full_join(aug.30.2016, sep.12.2017, by = "Split")
+all.workouts <- full_join(first.join, sep.13.2016, by = "Split")
+
+# Rename column headers to date of workout
+names(all.workouts)[names(all.workouts) == "Time.x"] <- "Aug 30 2016"
