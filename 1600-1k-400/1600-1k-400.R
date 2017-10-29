@@ -51,8 +51,12 @@ names(all.workouts)[names(all.workouts) == "Time.y"] <- "Sep 20 2016"
 # Makes new data table, optimized for plotting
 all.workouts.plot <- all.workouts %>% gather(`Sep 19 2017`, `Sep 20 2016`, key = "Date", value = "Time") %>% arrange(Split)
 
+# Convert split column from char to double, and sort
+all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+all.workouts.plot <- arrange(all.workouts.plot, Split)
+
 # Plot it (vertical lines to distinguish different length splits)
-ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) + 
-  geom_path() + 
+ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
+  geom_path() +
   geom_vline(xintercept = 2.5) +
   geom_vline(xintercept = 5.5)
