@@ -27,6 +27,7 @@ allegheny.classic.2017 <- allegheny.classic.2017[-c(1, 2, 3, 4), ] %>% select(Sp
 rowan.2016 <- rowan.2016[-c(1), ] %>% select(Split, Moving.Time)
 paul.short.2016 <- paul.short.2016[-c(1), ] %>% select(Split, Moving.Time)
 st.vincent.2016 <- st.vincent.2016[-c(1), ] %>% select(Split, Moving.Time)
+conferences.2017 <- conferences.2017[-c(1), ] %>% select(Split, Moving.Time)
 
 # Rename Moving.Time to Time
 names(oberlin.2017)[names(oberlin.2017) == "Moving.Time"] <- "Time"
@@ -35,3 +36,4 @@ names(allegheny.classic.2017)[names(allegheny.classic.2017) == "Moving.Time"] <-
 names(rowan.2016)[names(rowan.2016) == "Moving.Time"] <- "Time"
 names(paul.short.2016)[names(paul.short.2016) == "Moving.Time"] <- "Time"
 names(st.vincent.2016)[names(st.vincent.2016) == "Moving.Time"] <- "Time"
+names(conferences.2017)[names(conferences.2017) == "Moving.Time"] <- "Time"
