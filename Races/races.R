@@ -9,6 +9,7 @@ allegheny.classic.2017 <- read.csv("~/GitHub/workouts/races/allegheny classic 20
 rowan.2016 <- read.csv("~/GitHub/workouts/races/rowan 2016.csv")
 paul.short.2016 <- read.csv("~/GitHub/workouts/races/paul short 2016.csv")
 st.vincent.2016 <- read.csv("~/GitHub/workouts/races/st vincent 2016.csv")
+conferences.2017 <- read.csv("~/GitHub/workouts/races/conferences 2017")
 
 # Copy Time data to Moving.Time so that unneeded splits can be deleted
 oberlin.2017 <- mutate(oberlin.2017, Moving.Time = Time)
@@ -17,6 +18,7 @@ allegheny.classic.2017 <- mutate(allegheny.classic.2017, Moving.Time = Time)
 rowan.2016 <- mutate(rowan.2016, Moving.Time = Time)
 paul.short.2016 <- mutate(paul.short.2016, Moving.Time = Time)
 st.vincent.2016 <- mutate(st.vincent.2016, Moving.Time = Time)
+conferences.2017 <- mutate(conferences.2017, Moving.Time = Time)
 
 # Delete all splits, leaving just the final time
 oberlin.2017 <- oberlin.2017[-c(1), ] %>% select(Split, Moving.Time)
@@ -33,5 +35,3 @@ names(allegheny.classic.2017)[names(allegheny.classic.2017) == "Moving.Time"] <-
 names(rowan.2016)[names(rowan.2016) == "Moving.Time"] <- "Time"
 names(paul.short.2016)[names(paul.short.2016) == "Moving.Time"] <- "Time"
 names(st.vincent.2016)[names(st.vincent.2016) == "Moving.Time"] <- "Time"
-
-
