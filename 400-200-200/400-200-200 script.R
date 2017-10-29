@@ -3,9 +3,7 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-Oct.27.2016 <- read.csv("~/Running Data/400-200-200/Oct 27 2016.csv") # Alden Computers
-
-Oct.27.2016 <- read.csv("~/Running Data/400-200-200/Oct 27 2016.csv") # My Laptop
+Oct.27.2016 <- read.csv("~/GitHub/workouts/400-200-200/Oct 27 2016.csv") # My Laptop
 
 # Copy Time data to Moving.Time, so we can delete rest splits
 Oct.27.2016 <- mutate(Oct.27.2016, Moving.Time = Time)
@@ -33,7 +31,14 @@ rownames(Oct.27.2016) <- 1:nrow(Oct.27.2016)
 all_workouts = full_join(Oct.27.2016, , header = TRUE, sep = ",")
 
 # Rename the headers of each workout to the year from Time.x and Time.y
-names(all_workouts)[names(all_400_200_200) == "Time.x"] <- "Oct.27.2016"
+names(all_workouts)[names(all_400_200_200) == "Time.x"] <- "Oct 27 2016"
+
+# New table optimized for plotting
+all.workouts.plot <- all.workouts %>% gather(`Oct 27 2016`, ``, key = "Date", value = "Time") %>% arrange(Split)
+
+# Convert split column from char to double, and sort
+all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+all.workouts.plot <- arrange(all.workouts.plot, Split)
 
 # Plot data
 ggplot(data = all_workouts, mapping = aes(x = Split, y = Time, group = Date, Color = Date)) +
