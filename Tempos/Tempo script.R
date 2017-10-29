@@ -3,11 +3,11 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-Aug.25.2017 <- read.csv("~/Running Data/Tempos/Aug 25 2017.csv") # Alden Computers
-Oct.17.2017 <- read.csv("~/Running Data/Tempos/Oct.17.2017.csv")
-Sep.14.2017 <- read.csv("~/Running Data/Tempos/Sep 14 2017.csv")
-Oct.18.2016 <- read.csv("~/Running Data/Tempos/Oct 17 2016.csv")
-Sep.15.2016 <- read.csv("~/Running Data/Tempos/Sep 15 2016.csv")
+Aug.25.2017 <- read.csv("~/GitHub/workouts/Tempos/Aug 25 2017.csv") # Alden Computers
+Oct.17.2017 <- read.csv("~/GitHub/workouts/Tempos/Oct.17.2017.csv")
+Sep.14.2017 <- read.csv("~/GitHub/workouts/Tempos/Sep 14 2017.csv")
+Oct.18.2016 <- read.csv("~/GitHub/workouts/Tempos/Oct 17 2016.csv")
+Sep.15.2016 <- read.csv("~/GitHub/workouts/Tempos/Sep 15 2016.csv")
 
 Aug.25.2017 <- read.csv("~/Github/workouts/Tempos/Aug 25 2017.csv") # My Laptop
 Oct.17.2017 <- read.csv("~/Github/workouts/Tempos/Oct 17 2017.csv")
@@ -77,5 +77,5 @@ all.workouts.plot <- all.workouts %>% gather(`Aug 25 2017`, `Oct 17 2017`, `Oct 
 
 
 # Plot the workouts
-ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) + 
+ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
   geom_path()
