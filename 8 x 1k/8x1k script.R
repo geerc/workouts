@@ -62,6 +62,10 @@ names(all.workouts)[names(all.workouts) == "Time"]   <- "Sep 28 2016"
 # Makes new data table, optimized for plotting
 all.workouts.plot <- all.workouts %>% gather(`Oct 12 2016`, `Sep 26 2017`, `Sep 28 2016`, key = "Date", value = "Time") %>% arrange(Split)
 
+# Convert Split column to doubles from characters, and sort
+all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+all.workouts.plot <- arrange(all.workouts.plot, Split)
+
 # Plot the table
-ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) + 
+ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
   geom_path()
