@@ -26,8 +26,15 @@ names(aug.24.2016)[names(aug.24.2016) == "Moving.Time"] <- "Time"
 names(aug.29.2017)[names(aug.29.2017) == "Moving.Time"] <- "Time"
 names(oct.25.2016)[names(oct.25.2016) == "Moving.Time"] <- "Time"
 
+# Convert split to int from char
+aug.11.2017$Split <- as.double(aug.11.2017$Split)
+aug.24.2016$Split <- as.double(aug.24.2016$Split)
+aug.29.2017$Split <- as.double(aug.29.2017$Split)
+oct.25.2016$Split <- as.double(oct.25.2016$Split)
+
 #Renaming splits so as not go by 2s
 aug.11.2017[2,1] <- 2
+aug.11.2017[2,2] <- NA
 
 aug.24.2016[2,1] <- 2
 aug.24.2016[3,1] <- 3
@@ -57,7 +64,7 @@ all.workouts <- full_join(aug.11.2017, aug.24.2016, by = "Split") %>%
 names(all.workouts)[names(all.workouts) == "Time.x"] <- "Aug 11 2017"
 names(all.workouts)[names(all.workouts) == "Time.y"] <- "Aug 24 2016"
 names(all.workouts)[names(all.workouts) == "Time.x.x"] <- "Aug 29 2017"
-names(all.workouts)[names(all.workouts) == "Time"] <- "Oct 25 2017"
+names(all.workouts)[names(all.workouts) == "Time.y.y"] <- "Oct 25 2016"
 
 # Make new data table optimized for plotting
 all.workouts.plot <- all.workouts %>% gather(`Oct 25 2016`, `Aug 11 2017`, `Aug 29 2017`, `Aug 24 2016`, key = "Date", value = "Time") %>% arrange(Split)
