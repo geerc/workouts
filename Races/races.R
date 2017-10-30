@@ -37,3 +37,20 @@ names(rowan.2016)[names(rowan.2016) == "Moving.Time"] <- "Time"
 names(paul.short.2016)[names(paul.short.2016) == "Moving.Time"] <- "Time"
 names(st.vincent.2016)[names(st.vincent.2016) == "Moving.Time"] <- "Time"
 names(conferences.2017)[names(conferences.2017) == "Moving.Time"] <- "Time"
+
+# Reindex rows to correct numbering
+rownames(oberlin.2017) <- 1:nrow(oberlin.2017)
+rownames(paul.short.2017) <- 1:nrow(paul.short.2017)
+rownames(allegheny.classic.2017) <- 1:nrow(allegheny.classic.2017)
+rownames(rowan.2016) <- 1:nrow(rowan.2016)
+rownames(paul.short.2016) <- 1:nrow(paul.short.2016)
+rownames(st.vincent.2016) <- 1:nrow(st.vincent.2016)
+rownames(conferences.2017) <- 1:nrow(conferences.2017)
+
+# Join data sets together
+all.workouts <- full_join(oberlin.2017, paul.short.2017, by = "Split") %>%
+  full_joion(allegheny.classic.2017, by = "Split") %>%
+  full_join(rowan.2016, by = "Split") %>%
+  full_join(paul.short.2016, by = "Split") %>%
+  full_join(st.vincent.2016, by = "Split") %>%
+  full_join(conferences.2017, by = "Split")
