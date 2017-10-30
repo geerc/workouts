@@ -32,6 +32,10 @@ rownames(Sep.5.2017) <- 1:nrow(Sep.5.2017)
 # New table for plotting
 # all.workouts.plot <- Sep.5.2017 %>% gather(`Sep 5 2017`, key = "Date", value = "Time") %>% arrange(Split)
 
+# Convert Split column from character to double
+# all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+# all.workouts.plot <- arrange(all.workouts.plot, Split)
+
 # Plot it
 ggplot(data = Sep.5.2017, mapping = aes(x = Split, y = Avg.Pace)) + 
   geom_point()

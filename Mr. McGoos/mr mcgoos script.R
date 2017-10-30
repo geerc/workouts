@@ -46,5 +46,5 @@ rownames(oct.24.2017) <- 1:nrow(oct.24.2017)
 # all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
 
 # Plot it (will change when more workouts are added)
-ggplot(data = oct.24.2017, mapping = aes(x = Split, y = Time)) + 
+ggplot(data = oct.24.2017, mapping = aes(x = Split, y = Time)) +
   geom_point()
