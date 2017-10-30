@@ -37,10 +37,6 @@ rownames(nov.1.2016) <- 1:nrow(nov.1.2016)
 # Makes a new data table, optimized for plotting
 # all.workouts.plot <- all.workouts %>% gather(`Nov 1 20-16`, ``, key = "Date", value = "Time") %>% arrange(Split)
 
-# Convert Split column to double from character
-# all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
-# arrange(all.workouts.plot, Split)
-
 # Plot it (will have to be changed if/when more workouts are added)
 ggplot(data = nov.1.2016, mapping = aes(x = Split, y = Time)) +
   geom_point()
