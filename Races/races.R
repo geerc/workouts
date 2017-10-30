@@ -48,9 +48,54 @@ rownames(st.vincent.2016) <- 1:nrow(st.vincent.2016)
 rownames(conferences.2017) <- 1:nrow(conferences.2017)
 
 # Join data sets together
-all.workouts <- full_join(oberlin.2017, paul.short.2017, by = "Split") %>%
-  full_joion(allegheny.classic.2017, by = "Split") %>%
+all.workouts <- full_join(st.vincent.2016, paul.short.2016, by = "Split") %>%
   full_join(rowan.2016, by = "Split") %>%
-  full_join(paul.short.2016, by = "Split") %>%
-  full_join(st.vincent.2016, by = "Split") %>%
+  full_join(allegheny.classic.2017, by = "Split") %>%
+  full_join(paul.short.2017, by = "Split") %>%
+  full_join(oberlin.2017, by = "Split") %>%
   full_join(conferences.2017, by = "Split")
+
+# Rename column headers to name of race
+names(all.workouts)[names(all.workouts) == "Time.x"] <- "St. Vincent 2016"
+names(all.workouts)[names(all.workouts) == "Time.y"] <- "Paul Short 2016"
+names(all.workouts)[names(all.workouts) == "Time.x.x"] <- "Rowan 2016"
+names(all.workouts)[names(all.workouts) == "Time.y.y"] <- "Allegheny Classic 2017"
+names(all.workouts)[names(all.workouts) == "Time.x.x.x"] <- "Paul Short 2017"
+names(all.workouts)[names(all.workouts) == "Time.y.y.y"]   <- "Oberlin 2017"
+names(all.workouts)[names(all.workouts) == "Time"] <- "Conferences 2017"
+
+# Mak new data table for plotting
+all.workouts.plot <- gather(all.workouts, `Conferences 2017`, `Oberlin 2017`, `Paul Short 2017`, `Allegheny Classic 2017`, `Rowan 2016`, `Paul Short 2016`, `St. Vincent 2016`, key = "Race", value = "Time")
+
+# Make split column count up from 1
+all.workouts.plot[1, 1] <- 1
+all.workouts.plot[2, 1] <- 2
+all.workouts.plot[3, 1] <- 3
+all.workouts.plot[4, 1] <- 4
+all.workouts.plot[5, 1] <- 5
+all.workouts.plot[6, 1] <- 6
+all.workouts.plot[7, 1] <- 7
+
+# Conver split to double
+all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+
+# Reverse order so most recent race is last
+all.workouts.plot <- arrange(all.workouts.plot, desc(Split))
+
+# Make split column count up from 1
+all.workouts.plot[1, 1] <- 1
+all.workouts.plot[2, 1] <- 2
+all.workouts.plot[3, 1] <- 3
+all.workouts.plot[4, 1] <- 4
+all.workouts.plot[5, 1] <- 5
+all.workouts.plot[6, 1] <- 6
+all.workouts.plot[7, 1] <- 7
+
+# New variable to allow grouping for plot
+all.workouts.plot[1, 4] <- 1
+all.workouts.plot <- fill(all.workouts.plot, V4)
+
+# Plot
+ggplot(data = all.workouts.plot, mapping= aes(x = Split, y = Time, group = V4)) +
+  geom_path() +
+  geom_vline(xintercept = 3.5) +
