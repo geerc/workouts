@@ -24,7 +24,7 @@ rownames(Oct.4.2016) <- 1:nrow(Oct.4.2016)
 # names(all.workouts)[names(all.workouts) == "Time.x"] <- "Oct 4 2016"
 
 # Make new table, optimized for plotting
-all.workouts.plot <- all.workouts.plot <- all.workouts %>% gather(`Oct 4 2016`, ``, , key = "Date", value = "Distance") %>% arrange(Split)
+# all.workouts.plot <- all.workouts.plot <- all.workouts %>% gather(`Oct 4 2016`, ``, , key = "Date", value = "Distance") %>% arrange(Split)
 
 # Convert split column from character to doubles, and sort by split
 all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
@@ -36,4 +36,5 @@ Oct.4.2016$Date <- "Oct 4 2016"
 # Plot the data
 ggplot(data = Oct.4.2016, mapping = aes(x = Split, y = Distance, group = Date, color = Date)) +
     geom_path() +
+    geom_point()
     ylim(.75, 1)

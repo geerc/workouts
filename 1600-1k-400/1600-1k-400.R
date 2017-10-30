@@ -58,5 +58,6 @@ all.workouts.plot <- arrange(all.workouts.plot, Split)
 # Plot it (vertical lines to distinguish different length splits)
 ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
   geom_path() +
+  geom_point() +
   geom_vline(xintercept = 2.5) +
   geom_vline(xintercept = 5.5)

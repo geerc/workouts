@@ -59,6 +59,9 @@ names(all.workouts)[names(all.workouts) == "Time.x"] <- "Oct 12 2016"
 names(all.workouts)[names(all.workouts) == "Time.y"] <- "Sep 26 2017"
 names(all.workouts)[names(all.workouts) == "Time"]   <- "Sep 28 2016"
 
+# Remove 1:50 1k
+all.workouts[3, 2] <- NA
+
 # Makes new data table, optimized for plotting
 all.workouts.plot <- all.workouts %>% gather(`Oct 12 2016`, `Sep 26 2017`, `Sep 28 2016`, key = "Date", value = "Time") %>% arrange(Split)
 
@@ -68,4 +71,5 @@ all.workouts.plot <- arrange(all.workouts.plot, Split)
 
 # Plot the table
 ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
-  geom_path()
+  geom_path() +
+  geom_point()

@@ -78,4 +78,5 @@ all.workouts.plot <- all.workouts %>% gather(`Aug 25 2017`, `Oct 17 2017`, `Oct 
 
 # Plot the workouts
 ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
-  geom_path()
+  geom_path() +
+  geom_point()

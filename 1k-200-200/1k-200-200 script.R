@@ -98,4 +98,5 @@ all.workouts.plot <- arrange(all.workouts.plot, Split)
 
 # Plot
 ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
-  geom_path()
+  geom_path() +
+  geom_point()
