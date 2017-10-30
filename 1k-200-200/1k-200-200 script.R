@@ -80,8 +80,8 @@ rownames(sep.12.2017) <- 1:nrow(sep.12.2017)
 rownames(sep.13.2016) <- 1:nrow(sep.13.2016)
 
 # Join data sets together
-first.join <- full_join(aug.30.2016, sep.12.2017, by = "Split")
-all.workouts <- full_join(first.join, sep.13.2016, by = "Split")
+all.workouts <- full_join(aug.30.2016, sep.12.2017, by = "Split") %>%
+  full_join(sep.13.2016, by = "Split")
 
 # Rename column headers to date of workout
 names(all.workouts)[names(all.workouts) == "Time.x"] <- "Aug 30 2016"
