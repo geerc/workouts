@@ -49,8 +49,8 @@ dec.9.2016[8, 1] <- 8
 
 dec.23.2016[1, 1] <- 1
 dec.23.2016[2, 1] <- 2
-dec.23.2016[2, 1] <- 3
-dec.23.2016[3, 1] <- 4
+dec.23.2016[3, 1] <- 3
+dec.23.2016[4, 1] <- 4
 dec.23.2016[5, 1] <- 5
 
 jan.5.2017[1, 1] <- 1
@@ -75,6 +75,19 @@ mar.21.2017[10, 1] <- 10
 mar.21.2017[11, 1] <- 11
 mar.21.2017[12, 1] <- 12
 
+mar.3.2017[1, 1] <- 1
+mar.3.2017[2, 1] <- 2
+mar.3.2017[3, 1] <- 3
+mar.3.2017[4, 1] <- 4
+mar.3.2017[5, 1] <- 5
+mar.3.2017[6, 1] <- 6
+mar.3.2017[7, 1] <- 7
+mar.3.2017[8, 1] <- 8
+mar.3.2017[9, 1] <- 9
+mar.3.2017[10, 1] <- 10
+mar.3.2017[11, 1] <- 11
+mar.3.2017[12, 1] <- 12
+
 # Reindex rows to correct numbering
 rownames(dec.9.2016) <- 1:nrow(dec.9.2016)
 rownames(dec.23.2016) <- 1:nrow(dec.23.2016)
@@ -88,4 +101,18 @@ all.workouts <- full_join(dec.9.2016, dec.23.2016, by = "Split") %>%
   full_join(mar.3.2017, by = "Split") %>%
   full_join(mar.21.2017, by = "Split")
 
+# Rename column headers to date of workout
+names(all.workouts)[names(all.workouts) == "Time.x"] <- "Dec 9 2016"
+names(all.workouts)[names(all.workouts) == "Time.y"] <- "Dec 23 2016"
+names(all.workouts)[names(all.workouts) == "Time.x.x"] <- "Jan 5 2017"
+names(all.workouts)[names(all.workouts) == "Time.y.y"] <- "Mar 3 2017"
+names(all.workouts)[names(all.workouts) == "Time"] <- "Mar 21 2017"
 
+# Make new data table optimized for plotting
+all.workouts.plot <- all.workouts %>% gather(`Dec 9 2016`, `Dec 23 2016`, `Jan 5 2017`, `Mar 3 2017`, `Mar 21 2017`, key = "Date", value = "Time") %>% 
+  arrange(Split)
+
+# Plot
+ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
+  geom_path() +
+  geom_point()
