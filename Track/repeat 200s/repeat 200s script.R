@@ -17,11 +17,11 @@ mar.3.2017 <- mutate(mar.3.2017, Moving.Time = Time)
 mar.21.2017 <- mutate(mar.21.2017, Moving.Time = Time)
 
 # Delete rest splits and remove unnecessary columns
-dec.9.2016 <- dec.9.2016[-c(1, 3, 5, 7, 9, 11, 13, 15, 17, 18), ] %>% select(Split, Moving.Time)
-dec.23.2016 <- dec.23.2016[-c(2, 4, 6, 8, 10, 11), ] %>% select(Split, Moving.Time)
-jan.5.2017 <- jan.5.2017[-c(2, 4, 6, 7, 9, 11, 13, 15, 17, 18), ] %>% select(Split, Moving.Time)
-mar.21.2017 <- mar.21.2017[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 25), ] %>% select(Split, Moving.Time)
-mar.3.2017 <- mar.3.2017[-c(2, 4, 6, 8, 10, 12, 13, 15, 17, 19, 21, 23, 25, 26), ] %>% select(Split, Moving.Time)
+dec.9.2016 <- dec.9.2016[-c(1:18), ] %>% select(Split, Moving.Time)
+dec.23.2016 <- dec.23.2016[-c(1:11), ] %>% select(Split, Moving.Time)
+jan.5.2017 <- jan.5.2017[-c(1:18), ] %>% select(Split, Moving.Time)
+mar.21.2017 <- mar.21.2017[-c(1:25), ] %>% select(Split, Moving.Time)
+mar.3.2017 <- mar.3.2017[-c(1:26), ] %>% select(Split, Moving.Time)
 
 # Rename Moving.Time to Time
 names(dec.9.2016)[names(dec.9.2016) == "Moving.Time"] <- "Time"
@@ -46,12 +46,14 @@ dec.9.2016[5, 1] <- 5
 dec.9.2016[6, 1] <- 6
 dec.9.2016[7, 1] <- 7
 dec.9.2016[8, 1] <- 8
+dec.9.2016[9, 1] <- 9
 
 dec.23.2016[1, 1] <- 1
 dec.23.2016[2, 1] <- 2
 dec.23.2016[3, 1] <- 3
 dec.23.2016[4, 1] <- 4
 dec.23.2016[5, 1] <- 5
+dec.23.2016[6, 1] <- 6
 
 jan.5.2017[1, 1] <- 1
 jan.5.2017[2, 1] <- 2
@@ -61,6 +63,7 @@ jan.5.2017[5, 1] <- 5
 jan.5.2017[6, 1] <- 6
 jan.5.2017[7, 1] <- 7
 jan.5.2017[8, 1] <- 8
+jan.5.2017[9, 1] <- 9
 
 mar.21.2017[1, 1] <- 1
 mar.21.2017[2, 1] <- 2
@@ -74,6 +77,7 @@ mar.21.2017[9, 1] <- 9
 mar.21.2017[10, 1] <- 10
 mar.21.2017[11, 1] <- 11
 mar.21.2017[12, 1] <- 12
+mar.21.2017[13, 1] <- 13
 
 mar.3.2017[1, 1] <- 1
 mar.3.2017[2, 1] <- 2
@@ -87,6 +91,7 @@ mar.3.2017[9, 1] <- 9
 mar.3.2017[10, 1] <- 10
 mar.3.2017[11, 1] <- 11
 mar.3.2017[12, 1] <- 12
+mar.3.2017[13, 1] <- 13
 
 # Reindex rows to correct numbering
 rownames(dec.9.2016) <- 1:nrow(dec.9.2016)
@@ -109,10 +114,20 @@ names(all.workouts)[names(all.workouts) == "Time.y.y"] <- "Mar 3 2017"
 names(all.workouts)[names(all.workouts) == "Time"] <- "Mar 21 2017"
 
 # Make new data table optimized for plotting
-all.workouts.plot <- all.workouts %>% gather(`Dec 9 2016`, `Dec 23 2016`, `Jan 5 2017`, `Mar 3 2017`, `Mar 21 2017`, key = "Date", value = "Time") %>% 
-  arrange(Split)
+all.workouts.plot <- all.workouts %>% gather(`Dec 9 2016`, `Dec 23 2016`, `Jan 5 2017`, `Mar 3 2017`, `Mar 21 2017`, key = "Date", value = "Time")
+
+# Give workouts numbers
+all.workouts.plot[1, 1] <- 1
+all.workouts.plot[2, 1] <- 2
+all.workouts.plot[3, 1] <- 3
+all.workouts.plot[4, 1] <- 4
+all.workouts.plot[5, 1] <- 5
+
+# New variable to allow grouping for plot
+all.workouts.plot[1, 4] <- 1
+all.workouts.plot <- fill(all.workouts.plot, V4)
 
 # Plot
-ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = Date, color = Date)) +
+ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = V4)) +
   geom_path() +
   geom_point()
