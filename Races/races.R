@@ -98,4 +98,4 @@ all.workouts.plot <- fill(all.workouts.plot, V4)
 # Plot
 ggplot(data = all.workouts.plot, mapping= aes(x = Split, y = Time, group = V4)) +
   geom_path() +
-  geom_vline(xintercept = 3.5) +
+  geom_vline(xintercept = 3.5)

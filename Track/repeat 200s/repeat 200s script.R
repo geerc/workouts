@@ -30,69 +30,6 @@ names(jan.5.2017)[names(jan.5.2017) == "Moving.Time"] <- "Time"
 names(mar.21.2017)[names(mar.21.2017) == "Moving.Time"] <- "Time"
 names(mar.3.2017)[names(mar.3.2017) == "Moving.Time"] <- "Time"
 
-# Convert split to int from char
-dec.9.2016$Split <- as.double(dec.9.2016$Split)
-dec.23.2016$Split <- as.double(dec.23.2016$Split)
-jan.5.2017$Split <- as.double(jan.5.2017$Split)
-mar.21.2017$Split <- as.double(mar.21.2017$Split)
-mar.3.2017$Split <- as.double(mar.3.2017$Split)
-
-# Put splits in order
-dec.9.2016[1, 1] <- 1
-dec.9.2016[2, 1] <- 2
-dec.9.2016[3, 1] <- 3
-dec.9.2016[4, 1] <- 4
-dec.9.2016[5, 1] <- 5
-dec.9.2016[6, 1] <- 6
-dec.9.2016[7, 1] <- 7
-dec.9.2016[8, 1] <- 8
-dec.9.2016[9, 1] <- 9
-
-dec.23.2016[1, 1] <- 1
-dec.23.2016[2, 1] <- 2
-dec.23.2016[3, 1] <- 3
-dec.23.2016[4, 1] <- 4
-dec.23.2016[5, 1] <- 5
-dec.23.2016[6, 1] <- 6
-
-jan.5.2017[1, 1] <- 1
-jan.5.2017[2, 1] <- 2
-jan.5.2017[3, 1] <- 3
-jan.5.2017[4, 1] <- 4
-jan.5.2017[5, 1] <- 5
-jan.5.2017[6, 1] <- 6
-jan.5.2017[7, 1] <- 7
-jan.5.2017[8, 1] <- 8
-jan.5.2017[9, 1] <- 9
-
-mar.21.2017[1, 1] <- 1
-mar.21.2017[2, 1] <- 2
-mar.21.2017[3, 1] <- 3
-mar.21.2017[4, 1] <- 4
-mar.21.2017[5, 1] <- 5
-mar.21.2017[6, 1] <- 6
-mar.21.2017[7, 1] <- 7
-mar.21.2017[8, 1] <- 8
-mar.21.2017[9, 1] <- 9
-mar.21.2017[10, 1] <- 10
-mar.21.2017[11, 1] <- 11
-mar.21.2017[12, 1] <- 12
-mar.21.2017[13, 1] <- 13
-
-mar.3.2017[1, 1] <- 1
-mar.3.2017[2, 1] <- 2
-mar.3.2017[3, 1] <- 3
-mar.3.2017[4, 1] <- 4
-mar.3.2017[5, 1] <- 5
-mar.3.2017[6, 1] <- 6
-mar.3.2017[7, 1] <- 7
-mar.3.2017[8, 1] <- 8
-mar.3.2017[9, 1] <- 9
-mar.3.2017[10, 1] <- 10
-mar.3.2017[11, 1] <- 11
-mar.3.2017[12, 1] <- 12
-mar.3.2017[13, 1] <- 13
-
 # Reindex rows to correct numbering
 rownames(dec.9.2016) <- 1:nrow(dec.9.2016)
 rownames(dec.23.2016) <- 1:nrow(dec.23.2016)
@@ -130,4 +67,5 @@ all.workouts.plot <- fill(all.workouts.plot, V4)
 # Plot
 ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = V4)) +
   geom_path() +
-  geom_point()
+  geom_point() +
+  geom_vline(xintercept = 5.5)
