@@ -3,13 +3,13 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-oberlin.2017 <- read.csv("~/GitHub/workouts/races/oberlin 2017.csv")
-paul.short.2017 <- read.csv("~/GitHub/workouts/races/paul short 2017.csv")
-allegheny.classic.2017 <- read.csv("~/GitHub/workouts/races/allegheny classic 2017.csv")
-rowan.2016 <- read.csv("~/GitHub/workouts/races/rowan 2016.csv")
-paul.short.2016 <- read.csv("~/GitHub/workouts/races/paul short 2016.csv")
-st.vincent.2016 <- read.csv("~/GitHub/workouts/races/st vincent 2016.csv")
-conferences.2017 <- read.csv("~/GitHub/workouts/races/conferences 2017.csv")
+oberlin.2017 <- read.csv("~/workouts/races/oberlin 2017.csv")
+paul.short.2017 <- read.csv("~/workouts/races/paul short 2017.csv")
+allegheny.classic.2017 <- read.csv("~/workouts/races/allegheny classic 2017.csv")
+rowan.2016 <- read.csv("~/workouts/races/rowan 2016.csv")
+paul.short.2016 <- read.csv("~/workouts/races/paul short 2016.csv")
+st.vincent.2016 <- read.csv("~/workouts/races/st vincent 2016.csv")
+conferences.2017 <- read.csv("~/workouts/races/conferences 2017.csv")
 
 # Copy Time data to Moving.Time so that unneeded splits can be deleted
 oberlin.2017 <- mutate(oberlin.2017, Moving.Time = Time)

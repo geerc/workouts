@@ -3,10 +3,10 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-grove.city.2016 <- read.csv("~/GitHub/workouts/races/grove.city 2016.csv")
-wooster.2016 <- read.csv("~/GitHub/workouts/races/wooster.2016.csv")
-chatham.2017 <- read.csv("~/GitHub/workouts/races/chatham 2017.csv")
-wooster.2017 <- read.csv("~/GitHub/workouts/races/wooster 2017.csv")
+grove.city.2016 <- read.csv("~/workouts/races/grove.city 2016.csv")
+wooster.2016 <- read.csv("~/workouts/races/wooster.2016.csv")
+chatham.2017 <- read.csv("~/workouts/races/chatham 2017.csv")
+wooster.2017 <- read.csv("~/workouts/races/wooster 2017.csv")
 
 # Copy Time data to Moving.Time so that unneeded splits can be deleted
 oberlin.2017 <- mutate(oberlin.2017, Moving.Time = Time)
