@@ -3,8 +3,8 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-nov.1.2016 <- read.csv("~/GitHub/workouts/200-400-600 ladder/Nov 1 2016.csv")
-oct.31.2017 <- read.csv("~/GitHub/workouts/200-400-600 ladder/oct 31 2017.csv")
+nov.1.2016 <- read.csv("~/workouts/200-400-600 ladder/Nov 1 2016.csv")
+oct.31.2017 <- read.csv("~/workouts/200-400-600 ladder/oct 31 2017.csv")
 
 nov.1.2016$Split <- as.double(nov.1.2016$Split)
 oct.31.2017$Split <- as.double(oct.31.2017$Split)
