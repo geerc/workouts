@@ -3,8 +3,8 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets for workouts
-Sep.19.2017 <- read.csv("~/GitHub/workouts/1600-1k-400/Sep 19 2017.csv")
-Sep.20.2016 <- read.csv("~/GitHub/workouts/1600-1k-400/sep 20 2016.csv")
+Sep.19.2017 <- read.csv("~/workouts/1600-1k-400/Sep 19 2017.csv")
+Sep.20.2016 <- read.csv("~/workouts/1600-1k-400/sep 20 2016.csv")
 
 # Copy Time data to Moving.Time, so we can delete rest splits
 Sep.19.2017 <- mutate(Sep.19.2017, Moving.Time = Time)
