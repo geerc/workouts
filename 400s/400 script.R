@@ -3,9 +3,9 @@ library(tidyverse)
 library(dplyr)
 
 # Import data sets
-spire.2017 <- read.csv("~/GitHub/workouts/400s/spire.csv")
-ashland.2017 <- read.csv("~/GitHub/workouts/400s/ashland.csv")
-conferences.2017 <- read.csv("~/GitHub/workouts/400s/conferences.csv")
+spire.2017 <- read.csv("~/workouts/400s/spire.csv")
+ashland.2017 <- read.csv("~/workouts/400s/ashland.csv")
+conferences.2017 <- read.csv("~/workouts/400s/conferences.csv")
 
 # Copy Time data to Moving.Time, so we can delete rest splits
 spire.2017 <- mutate(spire.2017, Moving.Time = Time)
