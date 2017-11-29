@@ -2,7 +2,7 @@
 library(tidyverse)
 library(dplyr)
 
-# Import data sets for workouts
+# Import data sets for races
 oberlin.2017 <- read.csv("~/workouts/races/oberlin 2017.csv")
 paul.short.2017 <- read.csv("~/workouts/races/paul short 2017.csv")
 allegheny.classic.2017 <- read.csv("~/workouts/races/allegheny classic 2017.csv")
