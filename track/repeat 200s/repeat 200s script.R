@@ -2,6 +2,7 @@
 library(tidyverse)
 library(dplyr)
 
+# Remember need to edit spreadsheet to put in average split time
 # Import data sets for workouts
 dec.9.2016 <- read.csv("~/workouts/track/repeat 200s/dec 9 2016.csv")
 dec.23.2016 <- read.csv("~/workouts/track/repeat 200s/dec 23 2016.csv")
