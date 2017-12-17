@@ -28,18 +28,24 @@ Oct.27.2016[9, 1] <- 9
 rownames(Oct.27.2016) <- 1:nrow(Oct.27.2016)
 
 # Join data sets together
-all.workouts = full_join(Oct.27.2016, , header = TRUE, sep = ",")
+#all.workouts = full_join(Oct.27.2016, , header = TRUE, sep = ",")
 
 # Rename the headers of each workout to the year from Time.x and Time.y
-names(all.workouts)[names(all_400_200_200) == "Time.x"] <- "Oct 27 2016"
+#names(all.workouts)[names(all_400_200_200) == "Time.x"] <- "Oct 27 2016"
 
 # New table optimized for plotting
-all.workouts.plot <- all.workouts %>% gather(`Oct 27 2016`, ``, key = "Date", value = "Time") %>% arrange(Split)
+#all.workouts.plot <- all.workouts %>% gather(`Oct 27 2016`, ``, key = "Date", value = "Time") %>% arrange(Split)
 
 # Convert split column from char to double, and sort
-all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
-all.workouts.plot <- arrange(all.workouts.plot, Split)
+#all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+#all.workouts.plot <- arrange(all.workouts.plot, Split)
 
 # Plot data
-ggplot(data = all.workouts, mapping = aes(x = Split, y = Time, group = Date, Color = Date)) +
-  geom_path()
+ggplot(data = Oct.27.2016, mapping = aes(x = Split, y = Time)) +
+  geom_point() +
+  geom_vline(xintercept = 1.5) +
+  geom_vline(xintercept = 3.5) +
+  geom_vline(xintercept = 4.5) +
+  geom_vline(xintercept = 6.5) +
+  geom_vline(xintercept = 7.5) 
+
