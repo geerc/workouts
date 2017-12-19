@@ -9,51 +9,34 @@ sep.12.2017 <- read.csv("~/workouts/1k-200-200/Sep 12 2017.csv")
 sep.13.2016 <- read.csv("~/workouts/1k-200-200/Sep 13 2016.csv")
 
 # Copy Time data to Moving.Time, so we can delete rest splits
-copy.time <- function(workout) {
-  workout <- mutate(workout, Moving.Time = Time)
-}
-
-copy.time(aug.30.2016)
-copy.time(sep.12.2017)
-copy.time(sep.13.2016)
-
 aug.30.2016 <- mutate(aug.30.2016, Moving.Time = Time)
 sep.12.2017 <- mutate(sep.12.2017, Moving.Time = Time)
 sep.13.2016 <- mutate(sep.13.2016, Moving.Time = Time)
 
 # Delete rest splits and remove unnecessary columns
+# 5 sets
 delete.rest.nowarmup <- function(workout) {
   workout <- workout[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 31), ] %>% 
     select(Split, Moving.Time)
 }
 
+#6 sets
 delete.rest.warmup <- function(workout) {
   workout <- workout[-c(1, 2, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 40), ] %>% 
     select(Split, Moving.Time)
 }
 
-aug.30.2016 <- aug.30.2016[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 31), ] %>% 
-  select(Split, Moving.Time)
-sep.12.2017 <- sep.12.2017[-c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 31), ] %>% 
-  select(Split, Moving.Time)
-sep.13.2016 <- sep.13.2016[-c(1, 2, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 40), ] %>% 
-  select(Split, Moving.Time)
+aug.30.2016 <- delete.rest.nowarmup(aug.30.2016)
+sep.12.2017 <- delete.rest.nowarmup(sep.12.2017)
+sep.13.2016 <- delete.rest.warmup(sep.13.2016)
 
 # Rename Moving.Time to Time
-rename.time <- function(workout) {
-  names(workout)[names(workout) == "Moving.Time"] <- "Time"
-}
-
-rename.time(aug.30.2016)
-rename.time(sep.12.2017)
-rename.time(sep.13.2016)
-
 names(aug.30.2016)[names(aug.30.2016) == "Moving.Time"] <- "Time"
 names(sep.12.2017)[names(sep.12.2017) == "Moving.Time"] <- "Time"
 names(sep.13.2016)[names(sep.13.2016) == "Moving.Time"] <- "Time"
 
 # Renaming splits so as not to go by 2s
-rename.splits <- function(workout) {
+rename.splits.5sets <- function(workout) {
   workout[1, 1] <- 1
   workout[2, 1] <- 2
   workout[3, 1] <- 3
@@ -70,6 +53,24 @@ rename.splits <- function(workout) {
   workout[14, 1] <- 14
   workout[15, 1] <- 15
 }
+
+aug.30.2016$Split <- rename.splits.5sets(aug.30.2016)
+
+aug.30.2016[1, 1] <- 1
+aug.30.2016[2, 1] <- 2
+aug.30.2016[3, 1] <- 3
+aug.30.2016[4, 1] <- 4
+aug.30.2016[5, 1] <- 5
+aug.30.2016[6, 1] <- 6
+aug.30.2016[7, 1] <- 7
+aug.30.2016[8, 1] <- 8
+aug.30.2016[9, 1] <- 9
+aug.30.2016[10, 1] <- 10
+aug.30.2016[11, 1] <- 11
+aug.30.2016[12, 1] <- 12
+aug.30.2016[13, 1] <- 13
+aug.30.2016[14, 1] <- 14
+aug.30.2016[15, 1] <- 15
 
 sep.12.2017[1, 1] <- 1
 sep.12.2017[2, 1] <- 2
