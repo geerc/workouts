@@ -54,7 +54,14 @@ rename.splits.5sets <- function(workout) {
   workout[15, 1] <- 15
 }
 
+renames.splits.5sets.forloop <- function(workout) {
+  for(i in dim(workout)[1]) {
+    workout[i, 1] <- i
+  }
+}
+
 aug.30.2016$Split <- rename.splits.5sets(aug.30.2016)
+aug.30.2016$Split <- renames.splits.5sets.forloop(aug.30.2016)
 
 aug.30.2016[1, 1] <- 1
 aug.30.2016[2, 1] <- 2
