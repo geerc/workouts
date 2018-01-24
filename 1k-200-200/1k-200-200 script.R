@@ -129,7 +129,11 @@ names(all.workouts)[names(all.workouts) == "Time.y"] <- "Sep 12 2017"
 names(all.workouts)[names(all.workouts) == "Time"]   <- "Sep 13 2016"
 
 # Make new data table optimized for plotting
-all.workouts.plot <- all.workouts %>% gather(`Aug 30 2016`, `Sep 12 2017`, `Sep 13 2016`, key = "Date", value = "Time") %>% 
+all.workouts.plot <- all.workouts %>% gather(`Aug 30 2016`,
+                                             `Sep 12 2017`,
+                                             `Sep 13 2016`,
+                                             key = "Date",
+                                             value = "Time") %>% 
   arrange(Split)
 
 # Convert split column from char to double, and sort
