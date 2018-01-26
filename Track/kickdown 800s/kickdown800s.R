@@ -54,7 +54,6 @@ all.workouts <- full_join(jan.24.2017, jan.23.2018, by = "Split")
 names(all.workouts)[names(all.workouts) == "Time.x"] <- "Jan 24 2017"
 names(all.workouts)[names(all.workouts) == "Time.y"] <- "Jan 23 2018"
 
-
 # Make new data table optimized for plotting
 all.workouts.plot <- all.workouts %>% gather(`Jan 24 2017`,
                                              `Jan 23 2018`,
