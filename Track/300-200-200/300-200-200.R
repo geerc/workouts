@@ -35,4 +35,4 @@ all.workouts.plot <- arrange(all.workouts.plot, Split)
 
 ggplot(data = all.workouts.plot, mapping = aes(x = Split, y = Time, group = V4)) +
   geom_path() +
-  geom_point()s
+  geom_point()
