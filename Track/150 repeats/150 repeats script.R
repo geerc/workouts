@@ -72,7 +72,8 @@ names(all.workouts)[names(all.workouts) == "Time"] <- "Feb 1 2018"
 all.workouts.plot <- all.workouts %>% gather(`Feb 2 2017`,
                                              `Apr 25 2017`,
                                              `Feb 1 2018`,
-                                             key = "Date", value = "Time") %>% 
+                                             key = "Date",
+                                             value = "Time") %>% 
   arrange(Split)
 
 # Convert splits to doubles
