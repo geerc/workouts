@@ -55,15 +55,14 @@ names(all.workouts)[names(all.workouts) == "Time.x"] <- "Jan 24 2017"
 names(all.workouts)[names(all.workouts) == "Time.y"] <- "Jan 23 2018"
 
 # Make new data table optimized for plotting
-all.workouts.plot <- all.workouts %>% gather(`Jan 23 2018`,
-                                             `Jan 24 2017`,
+all.workouts.plot <- all.workouts %>% gather(`Jan 24 2017`,
+                                             `Jan 23 2018`,
                                              key = "Date",
                                              value = "Time") %>%
-  group_by(all.workouts.plot, Split) %>%
-  arrange(all.workouts.plot, Split)
+  arrange(Split)
 
 # Convert split column from char to double, and sort
-all.workouts.plot$Split <- as.double(all.workouts.plot$Split)
+all.workouts.plot$Split <- as.integer(all.workouts.plot$Split)
 all.workouts.plot <- arrange(all.workouts.plot, Split)
 
 # Plot
